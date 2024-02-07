@@ -1,4 +1,7 @@
 ﻿using Pokemon_Battle_Simulator;
+using System;
+using System.Security.Cryptography.X509Certificates;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Pokemon_Battle_Simulator
 {
@@ -6,33 +9,101 @@ namespace Pokemon_Battle_Simulator
     {
         static void Main(string[] args)
         {
+            // Creating charmander
             Pokemon charmander = new Pokemon("Charmander", "Fire", "Water");
 
-            for (int i = 1; i < 3; i++)
+            // Creating trainer's belt with 6 pokeballs
+            List<Pokeball> belt = new List<Pokeball>();
+
+            // Creating list with all trainers
+            List<Trainer> trainersLst = new List<Trainer>();
+
+            bool gameStart = true;
+
+            // For restarting game
+            while (gameStart)
             {
-                Pokeball pokeball1 = new Pokeball(charmander);
-                List<Pokeball> belt = new List<Pokeball>();
-                for (int x = 0; x < 7; x++)
+                bool question = true;
+
+                // For loop which creates two trainers
+                for (int i = 1; i < 3; i++)
                 {
-                    belt.Add(pokeball1);
+                    try
+                    {
+                        // Creating pokeball with Charmander inside and using a for loop to add the pokeballs inside the belt
+                        Pokeball pokeball = new Pokeball(charmander);
+                        for (int x = 0; x < 6; x++)
+                        {
+                            belt.Add(pokeball);
+                        }
+
+                        // The user can choose a name for the trainers
+                        Console.WriteLine($"Choose a name for trainer {i}.");
+                        string trainerName = Console.ReadLine();
+
+                        // This creates the trainer with the user's chosen name
+                        Trainer trainer = new Trainer(trainerName, belt);
+
+                        // The newly created trainer will be added to the list of trainers 
+                        trainersLst.Add(trainer);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Error message
+                        Console.WriteLine($"Error: " + ex.Message);
+                    }
+
                 }
 
-                Console.WriteLine($"Choose a name for trainer {i}.");
-                string trainerName = Console.ReadLine();
-                Trainer trainer = new Trainer(trainerName, belt);
+                // Displaying all pokemons
+                trainersLst[0].Call();
+                trainersLst[1].Call();
 
-                Console.WriteLine($"{trainerName} has:");
-                foreach (Pokeball ball in belt)
+                for (int i = 0; i < 6; i++)
                 {
-                    Console.WriteLine(ball.pokemon.pokemon);
+                    // Trainer 1 throw
+                    Console.WriteLine($"Trainer {trainersLst[0].name} throws {i + 1}. {trainersLst[0].belt[i].pokemon.pokemon}");
+                    trainersLst[0].belt[i].Open();
+                    trainersLst[0].belt[i].pokemon.battleCry();
+
+                    // Trainer 2 throw
+                    Console.WriteLine($"Trainer {trainersLst[1].name} throws {i + 1}. {trainersLst[1].belt[i].pokemon.pokemon}");
+                    trainersLst[1].belt[i].Open();
+                    trainersLst[1].belt[i].pokemon.battleCry();
+
+                    // Trainer 1 recall
+                    Console.WriteLine($"Trainer {trainersLst[0].name} recalls {i + 1}. {trainersLst[0].belt[i].pokemon.pokemon}!");
+                    trainersLst[0].belt[i].Close();
+                    trainersLst[0].belt[i].pokemon.battleCry();
+
+                    // Trainer 2 recall
+                    Console.WriteLine($"Trainer {trainersLst[1].name} recalls {i + 1}. {trainersLst[1].belt[i].pokemon.pokemon}!");
+                    trainersLst[1].belt[i].Close();
+                    trainersLst[1].belt[i].pokemon.battleCry();
+                }
+
+                while (question)
+                {
+                    // Asking if the user wants to restart the game
+                    Console.WriteLine("Do you want to quit or restart?");
+                    string answer = Console.ReadLine();
+                    if (answer == "quit")
+                    {
+                        gameStart = false;
+                        break;
+                    }
+                    else if (answer == "restart")
+                    {
+                        question = false;
+                        continue;
+                    }
+                    else
+                    {
+                        Console.WriteLine("That is not a valid answer");
+                    }
                 }
             }
 
-
-            for (int i = 0; i <= 10; i++)
-            {
-                charmander.battleCry();
-            }
 
         }
     }
@@ -52,7 +123,7 @@ namespace Pokemon_Battle_Simulator
 
         public void battleCry()
         {
-            Console.WriteLine(this.pokemon + ": " + this.pokemon + "!");
+            Console.WriteLine(this.pokemon + " uses battle cry: " + this.pokemon + "!");
         }
     }
 }
@@ -94,4 +165,14 @@ class Trainer
         this.belt = belt;
     }
 
+    public void Call()
+    {
+        Console.WriteLine($"{name} is being called!");
+
+        Console.WriteLine($"{name} has:");
+        foreach (Pokeball ball in belt)
+        {
+            Console.WriteLine(ball.pokemon.pokemon);
+        }
+    }
 }
