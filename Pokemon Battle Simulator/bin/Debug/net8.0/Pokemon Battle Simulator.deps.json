@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Pokemon Battle Simulator/1.0.0": {
+        "runtime": {
+          "Pokemon Battle Simulator.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Pokemon Battle Simulator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

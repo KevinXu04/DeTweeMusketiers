@@ -1,0 +1,15 @@
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\bin\Debug\net8.0\Pokemon Battle Simulator.exe
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\bin\Debug\net8.0\Pokemon Battle Simulator.deps.json
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\bin\Debug\net8.0\Pokemon Battle Simulator.runtimeconfig.json
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\bin\Debug\net8.0\Pokemon Battle Simulator.dll
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\bin\Debug\net8.0\Pokemon Battle Simulator.pdb
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\obj\Debug\net8.0\Pokemon Battle Simulator.GeneratedMSBuildEditorConfig.editorconfig
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\obj\Debug\net8.0\Pokemon Battle Simulator.AssemblyInfoInputs.cache
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\obj\Debug\net8.0\Pokemon Battle Simulator.AssemblyInfo.cs
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\obj\Debug\net8.0\Pokemon Battle Simulator.csproj.CoreCompileInputs.cache
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\obj\Debug\net8.0\Pokemon Battle Simulator.sourcelink.json
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\obj\Debug\net8.0\Pokemon Battle Simulator.dll
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\obj\Debug\net8.0\refint\Pokemon Battle Simulator.dll
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\obj\Debug\net8.0\Pokemon Battle Simulator.pdb
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\obj\Debug\net8.0\Pokemon Battle Simulator.genruntimeconfig.cache
+C:\School\DaVinci\github\DeDrieMusketiers\Pokemon Battle Simulator\obj\Debug\net8.0\ref\Pokemon Battle Simulator.dll
