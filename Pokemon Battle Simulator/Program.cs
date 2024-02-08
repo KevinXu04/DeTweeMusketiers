@@ -9,8 +9,11 @@ namespace Pokemon_Battle_Simulator
     {
         static void Main(string[] args)
         {
-            // Creating charmander
-            Pokemon charmander = new Pokemon("Charmander", "Fire", "Water");
+            // Creating the pokemons
+            // Pokemon charmander = new Pokemon("Charmander", "nickname", "Fire", "Water");
+            Squirtle squirtle = new Squirtle("Waterman");
+            Bulbasaur bulbasaur = new Bulbasaur("Grassman");
+            Charmander charmander = new Charmander("Fireman");
 
             // Creating trainer's belt with 6 pokeballs
             List<Pokeball> belt = new List<Pokeball>();
@@ -31,10 +34,14 @@ namespace Pokemon_Battle_Simulator
                     try
                     {
                         // Creating pokeball with Charmander inside and using a for loop to add the pokeballs inside the belt
-                        Pokeball pokeball = new Pokeball(charmander);
-                        for (int x = 0; x < 6; x++)
+                        Pokeball pokeballSqui = new Pokeball(squirtle);
+                        Pokeball pokeballBulb = new Pokeball(bulbasaur);
+                        Pokeball pokeballChar = new Pokeball(charmander);
+                        for (int x = 0; x < 2; x++)
                         {
-                            belt.Add(pokeball);
+                            belt.Add(pokeballSqui);
+                            belt.Add(pokeballBulb);
+                            belt.Add(pokeballChar);
                         }
 
                         // The user can choose a name for the trainers
@@ -74,12 +81,10 @@ namespace Pokemon_Battle_Simulator
                     // Trainer 1 recall
                     Console.WriteLine($"Trainer {trainersLst[0].name} recalls {i + 1}. {trainersLst[0].belt[i].pokemon.pokemon}!");
                     trainersLst[0].belt[i].Close();
-                    trainersLst[0].belt[i].pokemon.battleCry();
 
                     // Trainer 2 recall
                     Console.WriteLine($"Trainer {trainersLst[1].name} recalls {i + 1}. {trainersLst[1].belt[i].pokemon.pokemon}!");
                     trainersLst[1].belt[i].Close();
-                    trainersLst[1].belt[i].pokemon.battleCry();
                 }
 
                 while (question)
@@ -108,71 +113,106 @@ namespace Pokemon_Battle_Simulator
         }
     }
 
-    class Pokemon
+    abstract class Pokemon
     {
         public string pokemon;
+        public string nickname;
         public string strength;
         public string weakness;
 
-        public Pokemon(string pokemon, string strength, string weakness)
+        public Pokemon(string pokemon, string nickname, string strength, string weakness)
         {
             this.pokemon = pokemon;
+            this.nickname = nickname;
             this.strength = strength;
             this.weakness = weakness;
         }
 
-        public void battleCry()
+        public abstract void battleCry();
+    }
+
+    class Squirtle : Pokemon
+    {
+        public Squirtle(string nickname) : base("Squirtle", nickname, "Water", "Leaf")
         {
-            Console.WriteLine(this.pokemon + " uses battle cry: " + this.pokemon + "!");
+        }
+
+        public override void battleCry()
+        {
+            Console.WriteLine(this.pokemon + " uses battle cry: " + this.nickname + "!");
         }
     }
-}
 
-class Pokeball
-{
-    public bool isOpen;
-    public Pokemon pokemon;
-
-    public Pokeball(Pokemon pokemon)
+    class Bulbasaur : Pokemon
     {
-        this.pokemon = pokemon;
-    }
-
-    public void Open()
-    {
-        isOpen = true;
-    }
-
-    public void Close()
-    {
-        isOpen = false;
-    }
-
-    public bool IsOpen()
-    {
-        return isOpen;
-    }
-}
-
-class Trainer
-{
-    public string name;
-    public List<Pokeball> belt;
-
-    public Trainer(string name, List<Pokeball> belt)
-    {
-        this.name = name;
-        this.belt = belt;
-    }
-
-    public void Call()
-    {
-        Console.WriteLine($"{name} is being called!");
-
-        Console.WriteLine($"{name} has:");
-        foreach (Pokeball ball in belt)
+        public Bulbasaur(string nickname) : base("Bulbasaur", nickname, "Grass", "Fire")
         {
-            Console.WriteLine(ball.pokemon.pokemon);
+        }
+
+        public override void battleCry()
+        {
+            Console.WriteLine(this.pokemon + " uses battle cry: " + this.nickname + "!");
+        }
+    }
+
+    class Charmander : Pokemon
+    {
+        public Charmander(string nickname) : base("Charmander", nickname, "Water", "Leaf")
+        {
+        }
+
+        public override void battleCry()
+        {
+            Console.WriteLine(this.pokemon + " uses battle cry: " + this.nickname + "!");
+        }
+    }
+
+    class Pokeball
+    {
+        public bool isOpen;
+        public Pokemon pokemon;
+
+        public Pokeball(Pokemon pokemon)
+        {
+            this.pokemon = pokemon;
+        }
+
+        public void Open()
+        {
+            isOpen = true;
+        }
+
+        public void Close()
+        {
+            isOpen = false;
+        }
+
+        public bool IsOpen()
+        {
+            return isOpen;
+        }
+    }
+
+    class Trainer
+    {
+        public string name;
+        public List<Pokeball> belt;
+
+        public Trainer(string name, List<Pokeball> belt)
+        {
+            this.name = name;
+            this.belt = belt;
+        }
+
+        public void Call()
+        {
+            Console.WriteLine($"{name} is being called!");
+
+            Console.WriteLine($"{name} has:");
+            foreach (Pokeball ball in belt)
+            {
+                Console.WriteLine(ball.pokemon.pokemon);
+            }
         }
     }
 }
