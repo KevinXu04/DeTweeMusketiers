@@ -62,30 +62,8 @@ namespace Pokemon_Battle_Simulator
 
                 }
 
-                // Displaying all pokemons
-                trainersLst[0].Call();
-                trainersLst[1].Call();
-
-                for (int i = 0; i < 6; i++)
-                {
-                    // Trainer 1 throw
-                    Console.WriteLine($"Trainer {trainersLst[0].name} throws {i + 1}. {trainersLst[0].belt[i].pokemon.pokemon}");
-                    trainersLst[0].belt[i].Open();
-                    trainersLst[0].belt[i].pokemon.battleCry();
-
-                    // Trainer 2 throw
-                    Console.WriteLine($"Trainer {trainersLst[1].name} throws {i + 1}. {trainersLst[1].belt[i].pokemon.pokemon}");
-                    trainersLst[1].belt[i].Open();
-                    trainersLst[1].belt[i].pokemon.battleCry();
-
-                    // Trainer 1 recall
-                    Console.WriteLine($"Trainer {trainersLst[0].name} recalls {i + 1}. {trainersLst[0].belt[i].pokemon.pokemon}!");
-                    trainersLst[0].belt[i].Close();
-
-                    // Trainer 2 recall
-                    Console.WriteLine($"Trainer {trainersLst[1].name} recalls {i + 1}. {trainersLst[1].belt[i].pokemon.pokemon}!");
-                    trainersLst[1].belt[i].Close();
-                }
+                
+                Battle.battle(trainersLst);
 
                 while (question)
                 {
@@ -107,111 +85,6 @@ namespace Pokemon_Battle_Simulator
                         Console.WriteLine("That is not a valid answer");
                     }
                 }
-            }
-
-
-        }
-    }
-
-    abstract class Pokemon
-    {
-        public string pokemon;
-        public string nickname;
-        public string strength;
-        public string weakness;
-
-        public Pokemon(string pokemon, string nickname, string strength, string weakness)
-        {
-            this.pokemon = pokemon;
-            this.nickname = nickname;
-            this.strength = strength;
-            this.weakness = weakness;
-        }
-
-        public abstract void battleCry();
-    }
-
-    class Squirtle : Pokemon
-    {
-        public Squirtle(string nickname) : base("Squirtle", nickname, "Water", "Leaf")
-        {
-        }
-
-        public override void battleCry()
-        {
-            Console.WriteLine(this.pokemon + " uses battle cry: " + this.nickname + "!");
-        }
-    }
-
-    class Bulbasaur : Pokemon
-    {
-        public Bulbasaur(string nickname) : base("Bulbasaur", nickname, "Grass", "Fire")
-        {
-        }
-
-        public override void battleCry()
-        {
-            Console.WriteLine(this.pokemon + " uses battle cry: " + this.nickname + "!");
-        }
-    }
-
-    class Charmander : Pokemon
-    {
-        public Charmander(string nickname) : base("Charmander", nickname, "Water", "Leaf")
-        {
-        }
-
-        public override void battleCry()
-        {
-            Console.WriteLine(this.pokemon + " uses battle cry: " + this.nickname + "!");
-        }
-    }
-
-    class Pokeball
-    {
-        public bool isOpen;
-        public Pokemon pokemon;
-
-        public Pokeball(Pokemon pokemon)
-        {
-            this.pokemon = pokemon;
-        }
-
-        public void Open()
-        {
-            isOpen = true;
-        }
-
-        public void Close()
-        {
-            isOpen = false;
-        }
-
-        public bool IsOpen()
-        {
-            return isOpen;
-        }
-    }
-
-    class Trainer
-    {
-        public string name;
-        public List<Pokeball> belt;
-
-        public Trainer(string name, List<Pokeball> belt)
-        {
-            this.name = name;
-            this.belt = belt;
-        }
-
-        public void Call()
-        {
-            Console.WriteLine($"{name} is being called!");
-
-            Console.WriteLine($"{name} has:");
-            foreach (Pokeball ball in belt)
-            {
-                Console.WriteLine(ball.pokemon.pokemon);
             }
         }
     }
