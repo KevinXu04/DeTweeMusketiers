@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\School\\DaVinci\\github\\DeDrieMusketiers\\Pokemon Battle Simulator\\Pokemon Battle Simulator.csproj": {}
+    "C:\\Users\\Gebruiker 1\\OneDrive - Da Vinci College\\SoftwareDeveloper\\bovenbouw\\DeDrieMusketiers\\Pokemon Battle Simulator\\Pokemon Battle Simulator.csproj": {}
   },
   "projects": {
-    "C:\\School\\DaVinci\\github\\DeDrieMusketiers\\Pokemon Battle Simulator\\Pokemon Battle Simulator.csproj": {
+    "C:\\Users\\Gebruiker 1\\OneDrive - Da Vinci College\\SoftwareDeveloper\\bovenbouw\\DeDrieMusketiers\\Pokemon Battle Simulator\\Pokemon Battle Simulator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\School\\DaVinci\\github\\DeDrieMusketiers\\Pokemon Battle Simulator\\Pokemon Battle Simulator.csproj",
+        "projectUniqueName": "C:\\Users\\Gebruiker 1\\OneDrive - Da Vinci College\\SoftwareDeveloper\\bovenbouw\\DeDrieMusketiers\\Pokemon Battle Simulator\\Pokemon Battle Simulator.csproj",
         "projectName": "Pokemon Battle Simulator",
-        "projectPath": "C:\\School\\DaVinci\\github\\DeDrieMusketiers\\Pokemon Battle Simulator\\Pokemon Battle Simulator.csproj",
-        "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\School\\DaVinci\\github\\DeDrieMusketiers\\Pokemon Battle Simulator\\obj\\",
+        "projectPath": "C:\\Users\\Gebruiker 1\\OneDrive - Da Vinci College\\SoftwareDeveloper\\bovenbouw\\DeDrieMusketiers\\Pokemon Battle Simulator\\Pokemon Battle Simulator.csproj",
+        "packagesPath": "C:\\Users\\Gebruiker 1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gebruiker 1\\OneDrive - Da Vinci College\\SoftwareDeveloper\\bovenbouw\\DeDrieMusketiers\\Pokemon Battle Simulator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Gebruiker 1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
