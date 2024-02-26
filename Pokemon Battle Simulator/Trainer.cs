@@ -8,23 +8,43 @@ namespace Pokemon_Battle_Simulator
 {
     class Trainer
     {
-        public string name;
-        public List<Pokeball> belt;
+        private string name;
+        private List<Pokeball> _belt;
+
+        // Constant to replace magic number
+        private const int MaxPokeballsOnBelt = 6;
+        readonly object belt;
+
+
+        public string Name 
+        {
+            get { return name; }
+            private set { name = value; }
+        }
+        public List<Pokeball> Belt
+        {
+            get { return _belt; }
+        }
 
         public Trainer(string name, List<Pokeball> belt)
         {
-            this.name = name;
-            this.belt = belt;
-        }
+            if (belt.Count > MaxPokeballsOnBelt)
+            {
+                throw new ArgumentException($"The number of pokeballs on the belt cannot exceed {MaxPokeballsOnBelt}.");
+            }
+
+            Name = name;
+            _belt = belt;
+        }   
 
         public void Call()
         {
-            Console.WriteLine($"{name} is being called!");
+            Console.WriteLine($"{Name} is being called!");
 
-            Console.WriteLine($"{name} has:");
-            foreach (Pokeball ball in belt)
+            Console.WriteLine($"{Name} has:");
+            foreach (Pokeball ball in _belt)
             {
-                Console.WriteLine(ball.pokemon.pokemon);
+                Console.WriteLine(ball.PokemonName.PokemonName);
             }
         }
     }

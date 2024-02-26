@@ -4,59 +4,106 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokemon_Battle_Simulator
-{
+namespace Pokemon_Battle_Simulator { 
+    public enum PokemonType
+    {
+        Fire,
+        Water,
+        Grass
+    }
+    public enum Strength
+    {
+        Fire,
+        Water,
+        Grass
+    }
+
+    public enum Weakness
+    {
+        Fire,
+        Water,
+        Grass
+    }
+
     abstract class Pokemon
     {
-        public string pokemon;
-        public string nickname;
-        public string strength;
-        public string weakness;
+        private string pokemon;
+        private string nickname;
+        private PokemonType pokemontype;
+        private Strength strength;
+        private Weakness weakness;
 
-        public Pokemon(string pokemon, string nickname, string strength, string weakness)
+        public string PokemonName
         {
-            this.pokemon = pokemon;
-            this.nickname = nickname;
-            this.strength = strength;
-            this.weakness = weakness;
+            get { return pokemon;}
+            private set { pokemon = value; }  
+        }
+        public string Nickname
+        {
+            get { return nickname; }
+            private set { nickname = value; }
+        }
+        public PokemonType PokemonType
+    {
+            get { return pokemontype; }
+            private set { pokemontype = value; }
+        }
+        public Strength Strength
+        {
+            get { return strength; }
+            private set { strength = value; }
+        }
+        public Weakness Weakness
+        {
+            get { return weakness; }
+            private set { weakness = value; }
+        }
+
+        protected Pokemon(string pokemon, string nickname, PokemonType pokemontype, Strength strength, Weakness weakness)
+        {
+            PokemonName = pokemon;
+            Nickname = nickname;
+            PokemonType = pokemontype;
+            Strength = strength;
+            Weakness = weakness;
         }
 
         public abstract void battleCry();
     }
 
-    class Squirtle : Pokemon
+    sealed class Squirtle : Pokemon
     {
-        public Squirtle(string nickname) : base("Squirtle", nickname, "Water", "Leaf")
+        public Squirtle(string nickname) : base("Squirtle", nickname, PokemonType.Water, Strength.Water, Weakness.Grass)
         {
         }
 
         public override void battleCry()
         {
-            Console.WriteLine(this.pokemon + " uses battle cry: " + this.nickname + "!");
+            Console.WriteLine(this.PokemonName + " uses battle cry: " + Nickname + "!");
         }
     }
 
-    class Bulbasaur : Pokemon
+    sealed class Bulbasaur : Pokemon
     {
-        public Bulbasaur(string nickname) : base("Bulbasaur", nickname, "Grass", "Fire")
+        public Bulbasaur(string nickname) : base("Bulbasaur", nickname, PokemonType.Grass, Strength.Grass, Weakness.Fire)
         {
         }
 
         public override void battleCry()
         {
-            Console.WriteLine(this.pokemon + " uses battle cry: " + this.nickname + "!");
+            Console.WriteLine(this.PokemonName + " uses battle cry: " + Nickname + "!");
         }
-    }
+}
 
-    class Charmander : Pokemon
+    sealed class Charmander : Pokemon
     {
-        public Charmander(string nickname) : base("Charmander", nickname, "Water", "Leaf")
+        public Charmander(string nickname) : base("Charmander", nickname, PokemonType.Fire, Strength.Fire, Weakness.Water)
         {
         }
 
         public override void battleCry()
         {
-            Console.WriteLine(this.pokemon + " uses battle cry: " + this.nickname + "!");
+            Console.WriteLine(this.PokemonName + " uses battle cry: " + Nickname + "!");
         }
     }
 }

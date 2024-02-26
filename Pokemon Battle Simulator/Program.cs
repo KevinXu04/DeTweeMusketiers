@@ -9,6 +9,8 @@ namespace Pokemon_Battle_Simulator
     {
         static void Main(string[] args)
         {
+            Random RP = new Random();
+
             // Creating the pokemons
             // Pokemon charmander = new Pokemon("Charmander", "nickname", "Fire", "Water");
             Squirtle squirtle = new Squirtle("Waterman");
@@ -16,7 +18,8 @@ namespace Pokemon_Battle_Simulator
             Charmander charmander = new Charmander("Fireman");
 
             // Creating trainer's belt with 6 pokeballs
-            List<Pokeball> belt = new List<Pokeball>();
+            List<Pokeball> belt1 = new List<Pokeball>();
+            List<Pokeball> belt2 = new List<Pokeball>();
 
             // Creating list with all trainers
             List<Trainer> trainersLst = new List<Trainer>();
@@ -29,41 +32,48 @@ namespace Pokemon_Battle_Simulator
                 bool question = true;
 
                 // For loop which creates two trainers
-                for (int i = 1; i < 3; i++)
-                {
                     try
                     {
                         // Creating pokeball with Charmander inside and using a for loop to add the pokeballs inside the belt
-                        Pokeball pokeballSqui = new Pokeball(squirtle);
-                        Pokeball pokeballBulb = new Pokeball(bulbasaur);
-                        Pokeball pokeballChar = new Pokeball(charmander);
-                        for (int x = 0; x < 2; x++)
-                        {
-                            belt.Add(pokeballSqui);
-                            belt.Add(pokeballBulb);
-                            belt.Add(pokeballChar);
-                        }
+                        belt1.Add(new Pokeball(squirtle));
+                        belt1.Add(new Pokeball(squirtle));
+                        belt1.Add(new Pokeball(bulbasaur));
+                        belt1.Add(new Pokeball(bulbasaur));
+                        belt1.Add(new Pokeball(charmander));
+                        belt1.Add(new Pokeball(charmander));
+
+                        belt2.Add(new Pokeball(squirtle));
+                        belt2.Add(new Pokeball(squirtle));
+                        belt2.Add(new Pokeball(bulbasaur));
+                        belt2.Add(new Pokeball(bulbasaur));
+                        belt2.Add(new Pokeball(charmander));
+                        belt2.Add(new Pokeball(charmander));
 
                         // The user can choose a name for the trainers
-                        Console.WriteLine($"Choose a name for trainer {i}.");
-                        string trainerName = Console.ReadLine();
+                        Console.WriteLine($"Choose a name for trainer 1.");
+                        string trainerName1 = Console.ReadLine();
+
+                        Console.WriteLine($"Choose a name for trainer 2.");
+                        string trainerName2 = Console.ReadLine();
 
                         // This creates the trainer with the user's chosen name
-                        Trainer trainer = new Trainer(trainerName, belt);
+                        Trainer trainer1 = new Trainer(trainerName1, belt1);
+                        Trainer trainer2 = new Trainer(trainerName2, belt2);
 
                         // The newly created trainer will be added to the list of trainers 
-                        trainersLst.Add(trainer);
-                    }
+                        trainersLst.Add(trainer1);
+                        trainersLst.Add(trainer2);
+                }
                     catch (Exception ex)
                     {
                         // Error message
                         Console.WriteLine($"Error: " + ex.Message);
                     }
 
-                }
+                
 
                 
-                Battle.battle(trainersLst);
+                Battle.battle(trainersLst, RP);
 
                 while (question)
                 {

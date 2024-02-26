@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pokemon Battle Simulator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a962305f35675e9b1c6cd88c38ae93495efd5dd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+225f8410738faddf4c8810e4af9e032f9cbfa1db")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pokemon Battle Simulator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pokemon Battle Simulator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

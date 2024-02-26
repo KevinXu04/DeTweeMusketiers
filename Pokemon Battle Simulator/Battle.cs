@@ -9,44 +9,108 @@ namespace Pokemon_Battle_Simulator
 {
     class Battle
     {
-        public List<Trainer> trainersLst;
+        public List<Trainer> trainersLst { get; private set; }
+        public Random RP = new Random();
 
         public Battle(List<Trainer> trainersLst)
         {
             this.trainersLst = trainersLst;
-            Battle.battle(trainersLst);
+            Battle.battle(trainersLst, RP);
         }
 
-        public static void battle(List<Trainer> trainersLst)
+        public static Pokemon ThrowBall(Trainer trainer, Random RP)
         {
+            int RPI = RP.Next(0, trainer.Belt.Count); // Picking a random pokeball
+
+            // If its already used it will search for another one
+            while (trainer.Belt[RPI].Used)
+            {
+                RPI = RP.Next(0, trainer.Belt.Count);
+            }
+
+            // Mark the Pokeball as used
+            trainer.Belt[RPI].used = true;
+
+            // Returning the Pokemon
+            return trainer.Belt[RPI].PokemonName;
+        }
+
+        public static void battle(List<Trainer> trainersLst, Random RP)
+        {
+            Console.WriteLine("test");
             // Displaying all pokemons
             trainersLst[0].Call();
             trainersLst[1].Call();
+            int round = 1;
+            string winner = "";
 
-            for (int i = 0; i < 6; i++)
+            Console.WriteLine(round);
+            // Trainer 1 Turn
+            Pokemon trainer1Pokemon = ThrowBall(trainersLst[0], RP);
+            Console.WriteLine($"Trainer {trainersLst[0].Name} throws {round}. {trainer1Pokemon.PokemonName}");
+            trainersLst[0].Belt[round - 1].Open();
+            trainer1Pokemon.battleCry();
+
+            // Trainer 2 Turn
+            Pokemon trainer2Pokemon = ThrowBall(trainersLst[1], RP);
+            Console.WriteLine($"Trainer {trainersLst[1].Name} throws {round}. {trainer2Pokemon.PokemonName}");
+            trainersLst[1].Belt[round - 1].Open();
+            trainer2Pokemon.battleCry();
+
+            while (!trainersLst[0].Belt.All(p => p.Used) == !trainersLst[1].Belt.All(p => p.Used))
             {
-                // Trainer 1 throw
-                Console.WriteLine($"Trainer {trainersLst[0].name} throws {i + 1}. {trainersLst[0].belt[i].pokemon.pokemon}");
-                trainersLst[0].belt[i].Open();
-                trainersLst[0].belt[i].pokemon.battleCry();
+                if (winner == trainersLst[0].Name)
+                {
+                    trainer1Pokemon = ThrowBall(trainersLst[0], RP);
+                    Console.WriteLine($"Trainer {trainersLst[0].Name} throws {round}. {trainer1Pokemon.PokemonName}");
+                    // trainersLst[0].belt[round - 1].Open();
+                    trainer1Pokemon.battleCry();
 
-                // Trainer 2 throw
-                Console.WriteLine($"Trainer {trainersLst[1].name} throws {i + 1}. {trainersLst[1].belt[i].pokemon.pokemon}");
-                trainersLst[1].belt[i].Open();
-                trainersLst[1].belt[i].pokemon.battleCry();
+                    trainer2Pokemon.battleCry();
+                } else
+                {
+                    trainer2Pokemon = ThrowBall(trainersLst[1], RP);
+                    Console.WriteLine($"Trainer {trainersLst[1].Name} throws {round}. {trainer2Pokemon.PokemonName}");
+                    // trainersLst[1].belt[round - 1].Open();
+                    trainer2Pokemon.battleCry();
+
+                    trainer1Pokemon.battleCry();
+                }
 
                 Console.WriteLine($"Current round: {Arena.roundsAddUp()}");
 
-                // Trainer 1 recall
-                Console.WriteLine($"Trainer {trainersLst[0].name} recalls {i + 1}. {trainersLst[0].belt[i].pokemon.pokemon}!");
-                trainersLst[0].belt[i].Close();
+                // Check if any trainer has run out of Pokémon
+                if ((trainer1Pokemon.PokemonType == PokemonType.Fire && trainer2Pokemon.PokemonType == PokemonType.Grass) ||
+                    (trainer1Pokemon.PokemonType == PokemonType.Grass && trainer2Pokemon.PokemonType == PokemonType.Water) ||
+                    (trainer1Pokemon.PokemonType == PokemonType.Water && trainer2Pokemon.PokemonType == PokemonType.Fire))
+                {
+                    Console.WriteLine(trainersLst[0].Name + " wins the battle!");
+                    winner = trainersLst[0].Name;
 
-                // Trainer 2 recall
-                Console.WriteLine($"Trainer {trainersLst[1].name} recalls {i + 1}. {trainersLst[1].belt[i].pokemon.pokemon}!");
-                trainersLst[1].belt[i].Close();
+                    // Trainer 2 recall
+                    Console.WriteLine($"Trainer {trainersLst[1].Name} recalls {trainer2Pokemon.PokemonName}!");
+                    // trainersLst[1].belt[round - 1].Close();
+                }
+                else if ((trainer2Pokemon.PokemonType == PokemonType.Fire && trainer1Pokemon.PokemonType == PokemonType.Grass) ||
+                        (trainer2Pokemon.PokemonType == PokemonType.Grass && trainer1Pokemon.PokemonType == PokemonType.Water) ||
+                        (trainer2Pokemon.PokemonType == PokemonType.Water && trainer1Pokemon.PokemonType == PokemonType.Fire))
+                {
+                    Console.WriteLine(trainersLst[1].Name + " wins the battle!");
+                    winner = trainersLst[1].Name;
+
+                    // Trainer 1 recall
+                    Console.WriteLine($"Trainer {trainersLst[0].Name} recalls {trainer1Pokemon.PokemonName}!");
+                    // trainersLst[0].belt[round - 1].Close();
+                }
+                else
+                {
+                    Console.WriteLine("It's a tie! No one wins the battle.");
+                }
 
                 Console.WriteLine($"Current battle round: {Arena.battlesAddUp()}");
+                round++;
             }
         }
+
     }
 }
