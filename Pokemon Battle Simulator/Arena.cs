@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,19 +8,29 @@ namespace Pokemon_Battle_Simulator
 {
     class Arena
     {
-        public static int rounds = 0;
-        public static int battles = 0;
+        private static int _rounds = 0;
+        private static int _battles = 0;
 
+        public static int Rounds
+        {
+            get { return _rounds; }
+            private set { _rounds = value; }
+        }
+
+        public static int Battles
+        {
+            get { return _battles; }
+            private set { _battles = value; }
+        }
         public static int roundsAddUp()
         {
-            rounds++;
-            return rounds;
+            return ++Rounds; 
         }
 
         public static int battlesAddUp()
         {
-            battles++;
-            return battles; 
+            return ++Battles; 
         }
+   
     }
 }
