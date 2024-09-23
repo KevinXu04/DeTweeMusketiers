@@ -63,7 +63,6 @@ namespace Pokemon_Battle_Simulator
                 {
                     trainer1Pokemon = ThrowBall(trainersLst[0], RP);
                     Console.WriteLine($"Trainer {trainersLst[0].Name} throws {round}. {trainer1Pokemon.PokemonName}");
-                    // trainersLst[0].belt[round - 1].Open();
                     trainer1Pokemon.battleCry();
 
                     trainer2Pokemon.battleCry();
@@ -71,7 +70,6 @@ namespace Pokemon_Battle_Simulator
                 {
                     trainer2Pokemon = ThrowBall(trainersLst[1], RP);
                     Console.WriteLine($"Trainer {trainersLst[1].Name} throws {round}. {trainer2Pokemon.PokemonName}");
-                    // trainersLst[1].belt[round - 1].Open();
                     trainer2Pokemon.battleCry();
 
                     trainer1Pokemon.battleCry();
@@ -89,7 +87,6 @@ namespace Pokemon_Battle_Simulator
 
                     // Trainer 2 recall
                     Console.WriteLine($"Trainer {trainersLst[1].Name} recalls {trainer2Pokemon.PokemonName}!");
-                    // trainersLst[1].belt[round - 1].Close();
                 }
                 else if ((trainer2Pokemon.PokemonType == PokemonType.Fire && trainer1Pokemon.PokemonType == PokemonType.Grass) ||
                         (trainer2Pokemon.PokemonType == PokemonType.Grass && trainer1Pokemon.PokemonType == PokemonType.Water) ||
@@ -100,7 +97,6 @@ namespace Pokemon_Battle_Simulator
 
                     // Trainer 1 recall
                     Console.WriteLine($"Trainer {trainersLst[0].Name} recalls {trainer1Pokemon.PokemonName}!");
-                    // trainersLst[0].belt[round - 1].Close();
                 }
                 else
                 {
